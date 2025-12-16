@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-@export var SPEED := 100.0
-@export var strength := 5.0
+@export var speed := 100.0
+@export var strength := 50.0
+@export var accel := 5.0
+@export var bounciness := .7
 
 var dir : Vector2
 var force_push : float
@@ -11,36 +13,23 @@ func calc_dir() -> void:
 	dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 
 #this val is calculated based on speed.
-#divided by 5 as to not have too much force, kind of a magical number
+#strength is the base value that the player can push
 func calc_force_push() -> void:
-	force_push = strength + velocity.length() / 5
+	force_push = strength + velocity.length() 
 
 func _physics_process(delta: float) -> void:
 	calc_force_push()
 	calc_dir()
 	
-	
 	if dir:
-		velocity = lerp(velocity,dir*SPEED,3.0*delta)
+		velocity = lerp(velocity, dir * speed, accel * delta)
 	else:
-		velocity.x = lerp(velocity.x, 0.0, 3.0 * delta)
-		velocity.y = lerp(velocity.y, 0.0, 3.0 * delta)
+		velocity.x = lerp(velocity.x, 0.0, accel * delta)
+		velocity.y = lerp(velocity.y, 0.0, accel * delta)
 	
-	move_and_slide()
-	
-	var collision = move_and_collide(velocity*delta)
-	var can_bounce = false
-	
-	#Gets all the collisions and checks if its a moveable body (rigidbody2d)
-	#then applies a force to move it (force_push)
-	#force_push is calculated based on speed
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * force_push)
-		
-		if c.get_collider() is StaticBody2D:
-			velocity = velocity.bounce(collision.get_normal())
-		
-	#if collision && can_bounce:
-		
+	#bounce
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal()) * bounciness
+		if collision.get_collider() is RigidBody2D:
+			collision.get_collider().apply_impulse(-collision.get_normal() * force_push)
