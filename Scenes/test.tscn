@@ -167,6 +167,6 @@ shape = SubResource("RectangleShape2D_ys1qc")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_lc1oi")]
-position = Vector2(131, 115)
+position = Vector2(148, 134)
 speed = 130.0
 bounciness = 0.85

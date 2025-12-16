@@ -18,9 +18,12 @@ func calc_dir() -> void:
 func calc_force_push() -> void:
 	force_push = strength + velocity.length() 
 
+func mouse_dir() -> Vector2:
+	return global_position.direction_to(get_global_mouse_position())
+
 func handle_input() -> void:
 	if Input.is_action_just_pressed("eject"):
-		velocity = speed * dash_mult * global_position.direction_to(get_global_mouse_position())
+		velocity = speed * dash_mult * mouse_dir()
 
 func _physics_process(delta: float) -> void:
 	calc_force_push()
