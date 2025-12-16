@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc0sdk3hsswsq"]
+[gd_scene load_steps=14 format=3 uid="uid://dc0sdk3hsswsq"]
 
 [ext_resource type="Texture2D" uid="uid://bxlfq456oq5wb" path="res://Sprites/icon.svg" id="1_8od7v"]
 [ext_resource type="PackedScene" uid="uid://ceh4en565vtv3" path="res://Scenes/player.tscn" id="1_lc1oi"]
@@ -23,6 +23,8 @@ size = Vector2(76.75, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3aeo"]
 size = Vector2(459, 50.000004)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8od7v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8od7v"]
 
@@ -93,6 +95,7 @@ debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
 position = Vector2(210, 124)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Statics/StaticBody2D6"]
+material = SubResource("CanvasItemMaterial_8od7v")
 position = Vector2(47, -3)
 rotation = 0.6087572
 polygon = PackedVector2Array(-24, 1, -6, 43, 39, -18, 98, -4, 60, 52, 111, 27, 125, -40, 39, -43)
@@ -155,4 +158,3 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_lc1oi")]
 position = Vector2(131, 115)
-SPEED = 120.0

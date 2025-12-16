@@ -15,16 +15,21 @@ func calc_dir() -> void:
 func calc_force_push() -> void:
 	force_push = strength + velocity.length() / 5
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	calc_force_push()
 	calc_dir()
+	
+	
 	if dir:
-		velocity = dir * SPEED
+		velocity = lerp(velocity,dir*SPEED,3.0*delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.x = lerp(velocity.x, 0.0, 3.0 * delta)
+		velocity.y = lerp(velocity.y, 0.0, 3.0 * delta)
 	
 	move_and_slide()
+	
+	var collision = move_and_collide(velocity*delta)
+	var can_bounce = false
 	
 	#Gets all the collisions and checks if its a moveable body (rigidbody2d)
 	#then applies a force to move it (force_push)
@@ -33,3 +38,9 @@ func _physics_process(_delta: float) -> void:
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * force_push)
+		
+		if c.get_collider() is StaticBody2D:
+			velocity = velocity.bounce(collision.get_normal())
+		
+	#if collision && can_bounce:
+		
