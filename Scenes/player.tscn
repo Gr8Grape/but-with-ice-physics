@@ -11,7 +11,6 @@ radius = 8.0
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_cvnsp")
-dash_mult = 3
 
 [node name="Grapple" parent="." instance=ExtResource("3_6t5aa")]
 
@@ -24,5 +23,5 @@ texture = ExtResource("1_v0iea")
 shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
