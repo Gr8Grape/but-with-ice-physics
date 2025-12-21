@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var speed := 150.0
 @export var strength := 50.0
 @export var accel := 600.0
-@export var bounciness := .4
+@export var bounciness := 0.4
 @export var dash_mult := 2.0
 @export var chain_str := 1500.0
 @export var sprint_mult := 1.2
