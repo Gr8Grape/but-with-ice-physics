@@ -11,3 +11,6 @@ func bounce() -> void:
 	Global.rand_sound_pitch(bump, .9, 1.1)
 	anim.stop()
 	anim.play("bounce")
+
+func bounce_obj(obj : RigidBody2D) -> void:
+	obj.apply_central_impulse(global_position.direction_to(obj.global_position).normalized() * 400)

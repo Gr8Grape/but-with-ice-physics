@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceh4en565vtv3"]
+[gd_scene load_steps=9 format=3 uid="uid://ceh4en565vtv3"]
 
 [ext_resource type="Script" uid="uid://bocprbe5h5mlq" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bwxara4550ttv" path="res://Scenes/grapple.tscn" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://c5t4fe3cu1cql" path="res://Sprites/virus.png" id="3_vgqql"]
+[ext_resource type="AudioStream" uid="uid://bw3moparsfkhf" path="res://Sounds/swallow.wav" id="4_fkybt"]
+[ext_resource type="AudioStream" uid="uid://df1674r2ck0lq" path="res://Sounds/hit.wav" id="5_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://cp2csrxf85do7" path="res://Sounds/collide.wav" id="6_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://b30ca68l2txjn" path="res://Sounds/dash.wav" id="7_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 8.0
@@ -23,5 +27,20 @@ offset = Vector2(-16, -16)
 shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="swallow" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("4_fkybt")
+
+[node name="noise" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("5_x3wgy")
+
+[node name="collide" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("6_x3wgy")
+volume_db = -4.404
+
+[node name="dash" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("7_3smsa")

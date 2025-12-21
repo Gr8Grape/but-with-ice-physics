@@ -17,6 +17,13 @@ extends CharacterBody2D
 @onready var grapple: Node2D = $Grapple
 @onready var obstacles = get_tree().get_nodes_in_group("TileMap")[0]
 
+#region sfx nodes
+@onready var dash: AudioStreamPlayer2D = $sfx/dash
+@onready var collide: AudioStreamPlayer2D = $sfx/collide
+@onready var noise: AudioStreamPlayer2D = $sfx/noise
+@onready var swallow: AudioStreamPlayer2D = $sfx/swallow
+#endregion
+
 var dir : Vector2
 var force_push : float
 var reel_amt : int = 0
@@ -30,7 +37,7 @@ var obj_bounce := 0.4
 
 #get direction for x and y based on whether up/down, left/right is pressed.
 func calc_dir() -> void:
-	dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+	dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 
 #calc the force used to push objects
 func calc_force_push() -> void:
@@ -46,7 +53,8 @@ func mouse_dir() -> Vector2:
 
 func handle_input() -> void:
 	#only dash while not coasting
-	if Input.is_action_just_pressed("dash") and not Input.is_action_pressed("coast"):
+	if Input.is_action_just_pressed("dash"):
+		dash.play()
 		velocity = speed * speed_mult * dash_mult * mouse_dir()
 	
 	#grapplingw
@@ -118,4 +126,17 @@ func _physics_process(delta: float) -> void:
 		elif collider.is_in_group("bouncer"):
 			collider.bounce()
 			obj_bounce = collider.bounciness
+		
+		#sfx
+		if velocity.length() >= speed and !collider.is_in_group("bouncer"):
+			Global.rand_sound_pitch(collide, .9, 1.1)
+			collide.play()
+		
 		velocity = velocity.bounce(collision.get_normal()) * (bounciness + obj_bounce) #bounciness
+
+#for now this just makes sfx when eating
+func eat() -> void:
+	Global.rand_sound_pitch(swallow, .95, 1.05)
+	Global.rand_sound_pitch(noise, .95, 1.05)
+	swallow.play()
+	noise.play()

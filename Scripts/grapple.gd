@@ -3,12 +3,13 @@ extends Node2D
 @onready var head: CharacterBody2D = $Head
 @onready var line: Sprite2D = $Line
 
+#speed can change so we need a reference point
+@export var def_speed := 1000
+
 var direction := Vector2(0,0)
 #global position the head is in
 var glob_head := Vector2(0,0)
 #def_speed is the default speed
-#speed can change so we need a reference point
-var def_speed := 1000
 var speed : float
 var flying := false
 var hooked := false

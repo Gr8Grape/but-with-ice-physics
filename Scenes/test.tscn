@@ -1,27 +1,10 @@
-[gd_scene load_steps=24 format=4 uid="uid://dc0sdk3hsswsq"]
+[gd_scene load_steps=12 format=4 uid="uid://dc0sdk3hsswsq"]
 
-[ext_resource type="Texture2D" uid="uid://bxlfq456oq5wb" path="res://Sprites/icon.svg" id="1_8od7v"]
 [ext_resource type="PackedScene" uid="uid://ceh4en565vtv3" path="res://Scenes/player.tscn" id="1_lc1oi"]
 [ext_resource type="Texture2D" uid="uid://jyus16gnwmtu" path="res://Sprites/assets.png" id="1_qc4db"]
 [ext_resource type="PackedScene" uid="uid://bgl3y48q18xnd" path="res://Scenes/bouncer.tscn" id="2_ys1qc"]
 [ext_resource type="PackedScene" uid="uid://ckt3ravy3huwt" path="res://Scenes/mass.tscn" id="3_ys1qc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qbn"]
-size = Vector2(133, 39)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc1oi"]
-size = Vector2(442.5, 39)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ys1qc"]
-radius = 26.305893
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xla"]
-size = Vector2(76.75, 61)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3aeo"]
-size = Vector2(459, 50.000004)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8od7v"]
+[ext_resource type="PackedScene" uid="uid://bs0enkc10o7ma" path="res://Scenes/object.tscn" id="4_35xla"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ys1qc"]
 texture = ExtResource("1_qc4db")
@@ -63,22 +46,6 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetScenesCollectionSource_35xla")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8od7v"]
-bounce = 0.25
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8od7v"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qc4db"]
-bounce = 1.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8od7v"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ys1qc"]
-bounce = 0.35
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys1qc"]
-size = Vector2(29, 12.999992)
-
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i3aeo"]
 scenes/1/scene = ExtResource("3_ys1qc")
 
@@ -88,7 +55,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_i3aeo")
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lc1oi")]
-position = Vector2(-111, 231)
+position = Vector2(201, 103)
 speed = 125.0
 accel = 1000.0
 bounciness = 0.8
@@ -100,119 +67,24 @@ friction = 700.0
 
 [node name="Statics" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Statics"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statics/StaticBody2D"]
-position = Vector2(56.499992, -9.499999)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_o3qbn")
-debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
-
-[node name="StaticBody2D7" type="StaticBody2D" parent="Statics"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statics/StaticBody2D7"]
-position = Vector2(242.75, 388)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_lc1oi")
-debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Statics"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statics/StaticBody2D3"]
-position = Vector2(185, 56)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CircleShape2D_ys1qc")
-debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Statics"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statics/StaticBody2D4"]
-position = Vector2(129, 238)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_35xla")
-debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="Statics"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statics/StaticBody2D5"]
-position = Vector2(353.5, -39)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_i3aeo")
-debug_color = Color(1, 0.6, 0.7019608, 0.41960785)
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="Statics"]
-position = Vector2(210, 124)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Statics/StaticBody2D6"]
-material = SubResource("CanvasItemMaterial_8od7v")
-position = Vector2(47, -3)
-rotation = 0.6087572
-polygon = PackedVector2Array(-24, 1, -6, 43, 39, -18, 98, -4, 60, 52, 111, 27, 125, -40, 39, -43)
-
 [node name="playfield" type="TileMapLayer" parent="Statics" groups=["TileMap"]]
-tile_map_data = PackedByteArray("AAD8/wkAAAAGAAAAAGD1/wkAAAAGAAAAAADy/wIAAAAEAAAAAAD0//3/AAAEAAAAAFD3//3/AAAAAAAAAFAEAA0AAAAAAAAAAGD9/w4AAAAGAAAAAAD1/wIAAAAGAAAAAFD8/wIAAAAGAAAAADA=")
+tile_map_data = PackedByteArray("AAD1/wkAAAAGAAAAAADy/wIAAAAEAAAAAAD0//3/AAAEAAAAAFD3//3/AAAAAAAAAFAEAA0AAAAAAAAAAGD9/w4AAAAGAAAAAAD1/wIAAAAGAAAAAFD8/wIAAAAGAAAAADD9//3/AAACAAAAAAAJAAAAAAACAAAAAAAQAAgAAAACAAAAAAAMAA8AAAACAAAAAAAQAAYAAAAEAAAAAAAQAAMAAAAEAAAAAAAQAAoAAAAEAAAAAAAQAA0AAAAAAAAAAGAMAA0AAAAAAAAAAAAQAP7/AAAGAAAAADA=")
 tile_set = SubResource("TileSet_35xla")
 
 [node name="bouncers" type="TileMapLayer" parent="Statics"]
-tile_map_data = PackedByteArray("AAD2/wAAAAAAAAAAAQD//wUAAAAAAAAAAQD//wQAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAMAAAAAAAAAAQABAAMAAAAAAAAAAQABAAIAAAAAAAAAAQACAAIAAAAAAAAAAQADAAIAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQAFAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQAGAAQAAAAAAAAAAQAGAAUAAAAAAAAAAQAGAAYAAAAAAAAAAQAHAAcAAAAAAAAAAQAGAAcAAAAAAAAAAQAGAAgAAAAAAAAAAQAFAAgAAAAAAAAAAQAFAAkAAAAAAAAAAQAEAAkAAAAAAAAAAQADAAkAAAAAAAAAAQADAAoAAAAAAAAAAQACAAoAAAAAAAAAAQABAAoAAAAAAAAAAQAAAAkAAAAAAAAAAQD//wgAAAAAAAAAAQD//wcAAAAAAAAAAQD+/wcAAAAAAAAAAQD+/wYAAAAAAAAAAQD2/wMAAAAAAAAAAQD7/wgAAAAAAAAAAQD2/wgAAAAAAAAAAQD7/wMAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD2/wAAAAAAAAAAAQD//wUAAAAAAAAAAQD//wQAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAMAAAAAAAAAAQABAAMAAAAAAAAAAQABAAIAAAAAAAAAAQACAAIAAAAAAAAAAQADAAIAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQAFAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQAGAAQAAAAAAAAAAQAGAAUAAAAAAAAAAQAGAAYAAAAAAAAAAQAHAAcAAAAAAAAAAQAGAAcAAAAAAAAAAQAGAAgAAAAAAAAAAQAFAAgAAAAAAAAAAQAFAAkAAAAAAAAAAQAEAAkAAAAAAAAAAQADAAkAAAAAAAAAAQADAAoAAAAAAAAAAQACAAoAAAAAAAAAAQABAAoAAAAAAAAAAQAAAAkAAAAAAAAAAQD//wgAAAAAAAAAAQD//wcAAAAAAAAAAQD+/wcAAAAAAAAAAQD+/wYAAAAAAAAAAQD2/wMAAAAAAAAAAQD7/wgAAAAAAAAAAQD2/wgAAAAAAAAAAQD7/wMAAAAAAAAAAQAPAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_i3aeo")
 
 [node name="Moveable" type="Node2D" parent="."]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Moveable"]
-position = Vector2(178, 176)
-collision_layer = 4
-collision_mask = 7
-mass = 2.5
-physics_material_override = SubResource("PhysicsMaterial_8od7v")
-gravity_scale = 0.0
+[node name="object" parent="Moveable" instance=ExtResource("4_35xla")]
+position = Vector2(146, 154)
 
-[node name="Icon" type="Sprite2D" parent="Moveable/RigidBody2D"]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.15234372, 0.15234372)
-texture = ExtResource("1_8od7v")
-metadata/_edit_lock_ = true
+[node name="object3" parent="Moveable" instance=ExtResource("4_35xla")]
+position = Vector2(-55, 6)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moveable/RigidBody2D"]
-shape = SubResource("CircleShape2D_8od7v")
-metadata/_edit_lock_ = true
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="Moveable"]
-position = Vector2(139, 74)
-collision_layer = 4
-collision_mask = 7
-mass = 4.0
-physics_material_override = SubResource("PhysicsMaterial_qc4db")
-gravity_scale = 0.0
-
-[node name="Icon" type="Sprite2D" parent="Moveable/RigidBody2D2"]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(0, 1.3113022e-06)
-scale = Vector2(0.15234372, 0.23339842)
-texture = ExtResource("1_8od7v")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moveable/RigidBody2D2"]
-shape = SubResource("CapsuleShape2D_8od7v")
-metadata/_edit_lock_ = true
-
-[node name="RigidBody2D3" type="RigidBody2D" parent="Moveable"]
-position = Vector2(255, 70.00001)
-collision_layer = 4
-collision_mask = 7
-mass = 3.0
-physics_material_override = SubResource("PhysicsMaterial_ys1qc")
-gravity_scale = 0.0
-
-[node name="Icon" type="Sprite2D" parent="Moveable/RigidBody2D3"]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.22460942, 0.0996093)
-texture = ExtResource("1_8od7v")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moveable/RigidBody2D3"]
-shape = SubResource("RectangleShape2D_ys1qc")
-metadata/_edit_lock_ = true
+[node name="object2" parent="Moveable" instance=ExtResource("4_35xla")]
+position = Vector2(-104, 107)
 
 [node name="food" type="Node2D" parent="."]
 
