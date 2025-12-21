@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var speed := 150.0
 @export var strength := 50.0
 @export var accel := 600.0
-@export var bounciness := 0.4
+@export var bounciness := 0.5
 @export var dash_mult := 2.0
 @export var chain_str := 1500.0
 @export var sprint_mult := 1.2
@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var friction := 500.0
 
 @onready var grapple: Node2D = $Grapple
+@onready var obstacles = get_tree().get_nodes_in_group("TileMap")[0]
 
 var dir : Vector2
 var force_push : float
@@ -22,10 +23,8 @@ var reel_amt : int = 0
 var reel_strength : float = 1
 var chain_velocity := Vector2.ZERO
 var speed_mult : float
+var obj_bounce := 0.4
 #endregion
-
-@onready var obsticles = get_tree().get_nodes_in_group("TileMap")[0]
-var bounce = 0.4
 
 #region calc functions
 
@@ -93,24 +92,30 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 500:
 		velocity = velocity.normalized() * 500
 	
-	
-	
 	#bounce
 	var collision = move_and_collide(velocity * delta)
 	var data
 	if collision:
+		if obj_bounce != 0:
+			obj_bounce = 0
+		var collider := collision.get_collider()
 		# Convert collision position to be local to $TileMap
-		var local_pos = obsticles.to_local(collision.get_position())
+		var local_pos = obstacles.to_local(collision.get_position())
 		# Convert the local $TileMap position to coordinates
-		var coords = obsticles.local_to_map(local_pos)
+		var coords = obstacles.local_to_map(local_pos)
 		# Get tile data with coords
-		data = obsticles.get_cell_tile_data(coords)
+		data = obstacles.get_cell_tile_data(coords)
 		# Get custom data
 		if data:
 			#uses data from tilemap to get its bounciness
-			bounce = data.get_custom_data("bounciness")
+			obj_bounce = data.get_custom_data("bounciness")
+		
 		if grapple.hooked:
 			grapple.release()
-		velocity = velocity.bounce(collision.get_normal()) * bounce #bounciness
-		if collision.get_collider() is RigidBody2D:
-			collision.get_collider().apply_impulse(-collision.get_normal() * force_push)
+		
+		if collider is RigidBody2D:
+			collider.apply_impulse(-collision.get_normal() * force_push)
+		elif collider.is_in_group("bouncer"):
+			collider.bounce()
+			obj_bounce = collider.bounciness
+		velocity = velocity.bounce(collision.get_normal()) * (bounciness + obj_bounce) #bounciness

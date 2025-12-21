@@ -15,6 +15,14 @@ run/main_scene="uid://dc0sdk3hsswsq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+Global="*res://Scripts/global.gd"
+
+[global_group]
+
+bouncer="these are all bouncers"
+
 [input]
 
 up={
@@ -73,8 +81,10 @@ coast={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Objects"
 2d_physics/layer_4="hook"
+2d_physics/layer_5="bouncers"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
