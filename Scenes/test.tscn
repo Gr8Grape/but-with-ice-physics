@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=4 uid="uid://dc0sdk3hsswsq"]
+[gd_scene load_steps=19 format=3 uid="uid://dc0sdk3hsswsq"]
 
 [ext_resource type="Texture2D" uid="uid://bxlfq456oq5wb" path="res://Sprites/icon.svg" id="1_8od7v"]
 [ext_resource type="PackedScene" uid="uid://ceh4en565vtv3" path="res://Scenes/player.tscn" id="1_lc1oi"]
 [ext_resource type="Texture2D" uid="uid://jyus16gnwmtu" path="res://Sprites/assets.png" id="1_qc4db"]
+[ext_resource type="PackedScene" uid="uid://ckt3ravy3huwt" path="res://Scenes/mass.tscn" id="3_ys1qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qbn"]
 size = Vector2(133, 39)
@@ -413,7 +414,7 @@ rotation = 0.6087572
 polygon = PackedVector2Array(-24, 1, -6, 43, 39, -18, 98, -4, 60, 52, 111, 27, 125, -40, 39, -43)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Statics" groups=["TileMap"]]
-tile_map_data = PackedByteArray("AAADAAMAAAAHAAAAAFAGAAYAAAAEAAAAAAAGAAcAAAAEAAEAAAAGAAgAAAAEAAIAAAAGAAkAAAAEAAMAAAAHAAYAAAAFAAAAAAAHAAcAAAAFAAEAAAAHAAgAAAAFAAIAAAAHAAkAAAAFAAMAAAAGAAMAAAAFAAIAADAGAAQAAAAFAAEAADAGAAUAAAAFAAAAADAHAAIAAAAEAAMAADAHAAMAAAAEAAIAADAHAAQAAAAEAAEAADAHAAUAAAAEAAAAADAGAAIAAAAFAAMAADAFAAEAAAAFAAMAAGAFAAIAAAAEAAMAAGAEAAEAAAAFAAIAAGAEAAIAAAAEAAIAAGADAAEAAAAFAAEAAGADAAIAAAAEAAEAAGACAAEAAAAFAAAAAGACAAIAAAAEAAAAAGABAAEAAAAFAAMAAGABAAIAAAAEAAMAAGAAAAEAAAAFAAIAAGAAAAIAAAAEAAIAAGD//wEAAAAFAAEAAGD//wIAAAAEAAEAAGD+/wEAAAAFAAAAAGD+/wIAAAAEAAAAAGD+/wMAAAAFAAAAAAD+/wQAAAAFAAEAAAD+/wUAAAAFAAIAAAD+/wYAAAAFAAMAAAD9/wMAAAAEAAAAAAD9/wQAAAAEAAEAAAD9/wUAAAAEAAIAAAD9/wYAAAAEAAMAAAD+/wcAAAAFAAAAAAD+/wgAAAAFAAEAAAD+/wkAAAAFAAIAAAD+/woAAAAFAAMAAAD9/wcAAAAEAAAAAAD9/wgAAAAEAAEAAAD9/wkAAAAEAAIAAAD9/woAAAAEAAMAAAACAAoAAAAEAAAAAFACAAsAAAAFAAAAAFABAAoAAAAEAAEAAFABAAsAAAAFAAEAAFAAAAoAAAAEAAIAAFAAAAsAAAAFAAIAAFD//woAAAAEAAMAAFD//wsAAAAFAAMAAFAGAAoAAAAEAAAAAFAGAAsAAAAFAAAAAFAFAAoAAAAEAAEAAFAFAAsAAAAFAAEAAFAEAAoAAAAEAAIAAFAEAAsAAAAFAAIAAFADAAoAAAAEAAMAAFADAAsAAAAFAAMAAFADAAYAAAACAAIAAAADAAcAAAACAAMAAAAEAAYAAAADAAIAAAAEAAcAAAADAAMAAAAAAAQAAAACAAIAAAAAAAUAAAACAAMAAAABAAQAAAADAAIAAAABAAUAAAADAAMAAAA=")
+tile_map_data = PackedByteArray(0, 0, 3, 0, 3, 0, 0, 0, 7, 0, 0, 0, 0, 80)
 tile_set = SubResource("TileSet_35xla")
 
 [node name="Moveable" type="Node2D" parent="."]
@@ -482,3 +483,14 @@ chain_str = 1250.0
 sprint_mult = 1.33
 slow_mult = 0.5
 friction = 700.0
+
+[node name="food" type="Node2D" parent="."]
+
+[node name="mass" parent="food" instance=ExtResource("3_ys1qc")]
+position = Vector2(-10, 56)
+
+[node name="mass2" parent="food" instance=ExtResource("3_ys1qc")]
+position = Vector2(-64, 87)
+
+[node name="mass3" parent="food" instance=ExtResource("3_ys1qc")]
+position = Vector2(-49, 138)

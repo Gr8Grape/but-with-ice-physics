@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8m4f8m30og0j"]
+
+[ext_resource type="Texture2D" uid="uid://u65uiura1pmp" path="res://Sprites/unlit start button.png" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://b136vsn4vghwb" path="res://Sprites/lit start button.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://dh3n2hp6iowcb" path="res://Sprites/unlit quit.png" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://cwdb1i7vhu5w5" path="res://Sprites/lit quit.png" id="4_n45e2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
+texture = ExtResource("1_48xlc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n45e2"]
+texture = ExtResource("2_1ehe0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opfnp"]
+texture = ExtResource("2_1ehe0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cp0ys"]
+texture = ExtResource("3_ce3w2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhxw7"]
+texture = ExtResource("4_n45e2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trj04"]
+texture = ExtResource("4_n45e2")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -60.5
+offset_right = 163.5
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n45e2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_opfnp")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -246.0
+offset_right = 144.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_cp0ys")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yhxw7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_trj04")

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2etdhk6u0iev"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="mass value" type="Label" parent="."]
+offset_left = 44.0
+offset_right = 84.0
+offset_bottom = 23.0
+horizontal_alignment = 2
+
+[node name="mass label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Mass:"

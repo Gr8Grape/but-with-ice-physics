@@ -15,6 +15,14 @@ run/main_scene="uid://dc0sdk3hsswsq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+GameManager="*res://Scenes/game_manager.tscn"
+
+[global_group]
+
+Player=""
+
 [input]
 
 up={
