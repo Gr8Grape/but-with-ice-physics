@@ -24,6 +24,9 @@ var chain_velocity := Vector2.ZERO
 var speed_mult : float
 #endregion
 
+@onready var obsticles = get_tree().get_nodes_in_group("TileMap")[0]
+var bounce = 0.4
+
 #region calc functions
 
 #get direction for x and y based on whether up/down, left/right is pressed.
@@ -90,11 +93,24 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 500:
 		velocity = velocity.normalized() * 500
 	
+	
+	
 	#bounce
 	var collision = move_and_collide(velocity * delta)
+	var data
 	if collision:
+		# Convert collision position to be local to $TileMap
+		var local_pos = obsticles.to_local(collision.get_position())
+		# Convert the local $TileMap position to coordinates
+		var coords = obsticles.local_to_map(local_pos)
+		# Get tile data with coords
+		data = obsticles.get_cell_tile_data(coords)
+		# Get custom data
+		if data:
+			#uses data from tilemap to get its bounciness
+			bounce = data.get_custom_data("bounciness")
 		if grapple.hooked:
 			grapple.release()
-		velocity = velocity.bounce(collision.get_normal()) * bounciness
+		velocity = velocity.bounce(collision.get_normal()) * bounce #bounciness
 		if collision.get_collider() is RigidBody2D:
 			collision.get_collider().apply_impulse(-collision.get_normal() * force_push)
