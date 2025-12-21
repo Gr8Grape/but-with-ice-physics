@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceh4en565vtv3"]
+[gd_scene load_steps=14 format=3 uid="uid://ceh4en565vtv3"]
 
 [ext_resource type="Script" uid="uid://bocprbe5h5mlq" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bwxara4550ttv" path="res://Scenes/grapple.tscn" id="3_6t5aa"]
@@ -7,9 +7,20 @@
 [ext_resource type="AudioStream" uid="uid://df1674r2ck0lq" path="res://Sounds/hit.wav" id="5_x3wgy"]
 [ext_resource type="AudioStream" uid="uid://cp2csrxf85do7" path="res://Sounds/collide.wav" id="6_x3wgy"]
 [ext_resource type="AudioStream" uid="uid://b30ca68l2txjn" path="res://Sounds/dash.wav" id="7_3smsa"]
+[ext_resource type="Texture2D" uid="uid://dh3n2hp6iowcb" path="res://Sprites/unlit quit.png" id="8_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://cwdb1i7vhu5w5" path="res://Sprites/lit quit.png" id="9_tx1dd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gymyn"]
+texture = ExtResource("8_f1ek2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pu2lt"]
+texture = ExtResource("9_tx1dd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukyrk"]
+texture = ExtResource("9_tx1dd")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -44,3 +55,21 @@ volume_db = -4.404
 
 [node name="dash" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("7_3smsa")
+
+[node name="quit" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 162.0
+offset_top = -105.0
+offset_right = 189.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_gymyn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pu2lt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ukyrk")
+
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

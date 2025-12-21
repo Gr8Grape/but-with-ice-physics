@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://lehq8ysrryok" path="res://Scripts/game_manager.gd" id="1_oj352"]
 [ext_resource type="PackedScene" uid="uid://b2etdhk6u0iev" path="res://Scenes/Score.tscn" id="2_e5fcp"]
 
-[node name="Game Manager" type="Node"]
+[node name="Game Manager" type="Node" groups=["MainMenu"]]
 script = ExtResource("1_oj352")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_e5fcp")]
+visible = false

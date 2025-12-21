@@ -1,9 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8m4f8m30og0j"]
+[gd_scene load_steps=16 format=3 uid="uid://b8m4f8m30og0j"]
 
 [ext_resource type="Texture2D" uid="uid://u65uiura1pmp" path="res://Sprites/unlit start button.png" id="1_48xlc"]
+[ext_resource type="Script" uid="uid://bwubt8xrvh6ep" path="res://Scripts/main_menu.gd" id="1_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://b136vsn4vghwb" path="res://Sprites/lit start button.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://db6knvwb4n4du" path="res://Sprites/background.png" id="2_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://dh3n2hp6iowcb" path="res://Sprites/unlit quit.png" id="3_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://cwdb1i7vhu5w5" path="res://Sprites/lit quit.png" id="4_n45e2"]
+[ext_resource type="Texture2D" uid="uid://blou8d7dgosdo" path="res://Sprites/Title sprite.png" id="7_trj04"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_16hvj"]
+texture = ExtResource("2_yhxw7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
 texture = ExtResource("1_48xlc")
@@ -23,6 +29,9 @@ texture = ExtResource("4_n45e2")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trj04"]
 texture = ExtResource("4_n45e2")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vr1f0"]
+texture = ExtResource("7_trj04")
+
 [node name="Main Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,13 +39,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cp0ys")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_16hvj")
 
-[node name="Button" type="Button" parent="."]
+[node name="start" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,7 +64,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_ce3w2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n45e2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_opfnp")
 
-[node name="Button2" type="Button" parent="."]
+[node name="quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -69,3 +80,18 @@ grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_cp0ys")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_yhxw7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_trj04")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.0
+offset_top = 50.0
+offset_right = 512.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vr1f0")
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

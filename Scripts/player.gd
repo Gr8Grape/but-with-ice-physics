@@ -140,3 +140,7 @@ func eat() -> void:
 	Global.rand_sound_pitch(noise, .95, 1.05)
 	swallow.play()
 	noise.play()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
